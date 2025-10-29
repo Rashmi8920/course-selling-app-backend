@@ -36,9 +36,7 @@ app.use(cors({
   optionSuccessstatus:200,
 }))
 
-const Port = process.env.port || 3000;
 const DB_URI = process.env.MONGO_URI;
-
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
@@ -66,7 +64,9 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-app.listen(Port, () => {
-  console.log(`port is run on ${Port}`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`port is run on ${PORT}`);
 });
+
 
