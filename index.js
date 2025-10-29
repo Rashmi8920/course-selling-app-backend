@@ -39,12 +39,16 @@ app.use(cors({
 const Port = process.env.port || 3000;
 const DB_URI = process.env.MONGO_URI;
 
-try {
-  await mongoose.connect(DB_URI);
-  console.log("connectd to database");
-} catch (e) {
-  console.log(e);
-}
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("✅ Connected to database");
+  } catch (error) {
+    console.error("❌ Database connection failed:", error.message);
+  }
+};
+connectDB();
+
 app.get("/", (req, res) => {
   res.send("course app mern");
 });
@@ -65,3 +69,4 @@ cloudinary.config({
 app.listen(Port, () => {
   console.log(`port is run on ${Port}`);
 });
+
