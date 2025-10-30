@@ -27,8 +27,9 @@ app.use(
 );
 
 app.use(cors({
-  origin:["http://localhost:5173","http://localhost:5174"],
-  // origin:process.env.FRONTEND_URL,
+  origin:["http://localhost:5173",
+          "https://course-selling-app-uxpq.onrender.com"],  
+  //live frontend url
   credentials:true,
   method:["POST","GET","PUT","DELETE"],
   allowedHeaders:["content-type","Authorization"],
@@ -68,5 +69,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`port is run on ${PORT}`);
 });
+
 
 
