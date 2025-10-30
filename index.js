@@ -37,6 +37,15 @@ app.use(cors({
   optionSuccessstatus:200,
 }))
 
+// cookie setup fix
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://course-selling-app-uxpq.onrender.com");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
+
 const DB_URI = process.env.MONGO_URI;
 const connectDB = async () => {
   try {
@@ -69,6 +78,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`port is run on ${PORT}`);
 });
+
 
 
 
