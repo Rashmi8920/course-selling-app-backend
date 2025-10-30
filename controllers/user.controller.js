@@ -79,7 +79,11 @@ const token=jwt.sign(
   config.JWT_USER_PASSWORD,   
   { expiresIn: "90d" }      
 );
-res.cookie("jwt",token)
+res.cookie("jwt",token, {
+  httpOnly: true,
+  secure: true, //  needed for HTTPS
+  sameSite: "None" // allows cookies across domains
+})
   res.status(201).json({message:"login successfull",user,token})
 } catch (error) {
   console.log(error,"Erros")
@@ -117,4 +121,5 @@ export const purchases=async(req,res)=>{
   } catch (error) {
     console.log(error,"error in purchase")
   }
+
 }
