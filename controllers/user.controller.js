@@ -82,7 +82,8 @@ const token=jwt.sign(
 res.cookie("jwt",token, {
   httpOnly: true,
   secure: true, //  needed for HTTPS
-  sameSite: "None" // allows cookies across domains
+  sameSite: "None", // allows cookies across domains
+   maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
 })
   res.status(201).json({message:"login successfull",user,token})
 } catch (error) {
@@ -127,4 +128,5 @@ export const purchases=async(req,res)=>{
   }
 
 }
+
 
