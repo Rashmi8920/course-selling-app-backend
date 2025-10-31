@@ -81,7 +81,11 @@ export const logout=async(req,res)=>{
     if(!req.cookies.jwt){
  return res.status(401).json({error:"kindly login first"});
     }
-    res.clearCookie("jwt");
+    res.clearCookie("jwt", {
+  httpOnly: true,
+  secure: true,
+  sameSite: "None",
+});
   res.status(200).json({message:"logout successfully"});
   } catch (error) {
     console.log(error,"error in logut")
@@ -89,3 +93,4 @@ export const logout=async(req,res)=>{
   }
 
 }
+
